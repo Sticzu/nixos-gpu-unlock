@@ -176,4 +176,5 @@ flowchart TD
 
 - Original research and core unlock logic by [Zagitta](https://github.com/Zagitta) and contributors in [Zagitta/gpu-unlock](https://github.com/Zagitta/gpu-unlock).
 - NixOS packaging, early initrd sequencing, and build derivations maintained by [Sticzu](https://github.com/Sticzu).
+- *This NixOS integration and documentation were developed with AI assistance.*
 - Licensed under the [GPL-2.0 License](LICENSE).
