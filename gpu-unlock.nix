@@ -80,9 +80,12 @@ let
         modules
     '';
 
+    # Kbuild generates the module certificate required by aggregateModules.
     installPhase = ''
-      install -D -m 644 kernel/gpu_unlock/gpu_unlock.ko \
-        $out/lib/modules/${kernel.modDirVersion}/extra/gpu_unlock.ko
+      make -C ${kernel.dev}/lib/modules/${kernel.modDirVersion}/build \
+        M="$PWD/kernel/gpu_unlock" \
+        ${lib.escapeShellArgs config.boot.kernelPackages.kernelModuleMakeFlags} \
+        INSTALL_MOD_PATH="$out" INSTALL_MOD_DIR=extra DEPMOD=true modules_install
     '';
   };
 in
