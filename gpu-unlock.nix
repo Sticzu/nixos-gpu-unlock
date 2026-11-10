@@ -26,7 +26,7 @@ let
 
     inherit src;
 
-    nativeBuildInputs = [ pkgs.python3 ];
+    nativeBuildInputs = [ pkgs.python3 pkgs.zstd ];
 
     dontStrip = true;
     dontPatchELF = true;
