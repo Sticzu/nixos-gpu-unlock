@@ -79,7 +79,7 @@ in
   boot.extraModulePackages = [ gpuUnlockModule ];
   boot.initrd.availableKernelModules = [ "gpu_unlock" ];
 
-  # 3. Kernel parameters: unlock all supported Ampere targets (e.g. GA100, GA102 / RTX 3090, GA106 / RTX 3060, AD102)
+  # 3. Kernel parameters: unlock all supported targets (Ampere GA10x, Ada Lovelace AD10x, Turing TU102)
   boot.kernelParams = [
     "gpu_unlock.targets=all"
     "gpu_unlock.resume=0"
@@ -87,7 +87,7 @@ in
 
   # 4. Early initrd systemd service: execute gpu_unlock BEFORE systemd-udevd binds the nvidia proprietary driver
   boot.initrd.systemd.services.gpu-unlock = {
-    description = "Unlock Ampere Tensor Cores before NVIDIA proprietary driver loads";
+    description = "Unlock Ampere and Ada Lovelace Tensor Cores before NVIDIA proprietary driver loads";
     wantedBy = [ "initrd.target" ];
     before = [ "systemd-udevd.service" "systemd-modules-load.service" ];
     unitConfig.DefaultDependencies = false;
