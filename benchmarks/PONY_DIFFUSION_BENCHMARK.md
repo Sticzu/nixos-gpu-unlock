@@ -26,7 +26,7 @@ To ensure strict scientific reproducibility and eliminate variances:
 | GPU | Architecture | Tensor / Unlock Status | Avg Time (s) | Sampling Speed | Peak VRAM | Power Draw | Speedup |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | **RTX 4060 Ti 16GB** | Ada Lovelace (AD106) | **Stock / Baseline** | **11.02 s** | **2.27 it/s** | 10.38 GB | ~112 W | Baseline |
-| **RTX 4060 Ti 16GB** | Ada Lovelace (AD106) | **`nixos-gpu-unlock 2.0`** | **8.06 s** | **3.10 it/s** | 10.38 GB | ~125 W | **+36.6% it/s (1.37x)** |
+| **RTX 4060 Ti 16GB** | Ada Lovelace (AD106) | **`nixos-gpu-unlock 2.0` (Experimental tier)** | **8.06 s** | **3.10 it/s** | 10.38 GB | ~125 W | **+36.6% it/s (1.37x)** |
 | **RTX 3060 12GB** | Ampere (GA106) | *Stock (Throttled)* | *(Pending measurement)* | *~1.6 - 1.8 it/s* | ~9.8 GB | ~130 W | - |
 | **RTX 3060 12GB** | Ampere (GA106) | **`nixos-gpu-unlock 2.0`** | *(Pending measurement)* | *~2.4 - 2.6 it/s* | ~9.8 GB | ~150 W | - |
 | **RTX 3090 24GB** | Ampere (GA102) | **`nixos-gpu-unlock 2.0`** | *(Pending measurement)* | *~6.5 - 7.2 it/s* | ~11.2 GB | ~350 W | - |
