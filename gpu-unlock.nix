@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   kernel = config.boot.kernelPackages.kernel;
@@ -26,7 +31,10 @@ let
 
     inherit src;
 
-    nativeBuildInputs = [ pkgs.python3 pkgs.zstd ];
+    nativeBuildInputs = [
+      pkgs.python3
+      pkgs.zstd
+    ];
 
     dontStrip = true;
     dontPatchELF = true;
@@ -89,7 +97,10 @@ in
   boot.initrd.systemd.services.gpu-unlock = {
     description = "Unlock Ampere and Ada Lovelace Tensor Cores before NVIDIA proprietary driver loads";
     wantedBy = [ "initrd.target" ];
-    before = [ "systemd-udevd.service" "systemd-modules-load.service" ];
+    before = [
+      "systemd-udevd.service"
+      "systemd-modules-load.service"
+    ];
     unitConfig.DefaultDependencies = false;
     serviceConfig = {
       Type = "oneshot";
