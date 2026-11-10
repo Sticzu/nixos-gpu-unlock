@@ -1,5 +1,5 @@
 {
-  description = "NixOS module for Zagitta/gpu-unlock (unlocking NVIDIA Ampere Tensor Core BF16/FP16 performance)";
+  description = "NixOS module for Zagitta/gpu-unlock 2.0 (unlocking NVIDIA Ampere and Ada Lovelace Tensor Core performance)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

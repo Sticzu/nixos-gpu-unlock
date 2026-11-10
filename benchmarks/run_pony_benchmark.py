@@ -83,8 +83,11 @@ for i in range(1, BENCHMARK_RUNS + 1):
     if i == 1:
         saved_image = out.images[0]
 
+gpu_env_id = os.environ.get("CUDA_VISIBLE_DEVICES", "0")
+gpu_slug = gpu_name.lower().replace("nvidia", "").replace("geforce", "").strip().replace(" ", "_")
+
 # Save output image
-img_path = os.path.join(OUT_DIR, "pony_rtx4060ti_seed42.png")
+img_path = os.path.join(OUT_DIR, f"pony_{gpu_slug}_seed42.png")
 saved_image.save(img_path)
 print(f"\nImage saved to: {img_path}")
 
@@ -97,19 +100,29 @@ avg_it_s = STEPS / avg_time
 min_time = min(run_times)
 max_time = max(run_times)
 
-# Read nvidia-smi power/temp
+# Detect architecture
+if "40" in gpu_name:
+    arch = "Ada Lovelace"
+elif "30" in gpu_name:
+    arch = "Ampere"
+elif "20" in gpu_name:
+    arch = "Turing"
+else:
+    arch = "NVIDIA"
+
+# Read nvidia-smi power/temp for this exact device
 try:
     smi_out = subprocess.check_output(
-        ["nvidia-smi", "--query-gpu=temperature.gpu,power.draw", "--format=csv,noheader,nounits"],
+        ["nvidia-smi", f"-i={gpu_env_id}", "--query-gpu=temperature.gpu,power.draw", "--format=csv,noheader,nounits"],
         text=True
-    ).strip().split("\n")[1]  # GPU 1
+    ).strip().splitlines()[0]
     temp, power = [x.strip() for x in smi_out.split(",")]
 except Exception:
     temp, power = "N/A", "N/A"
 
 results = {
     "gpu_name": gpu_name,
-    "architecture": "Ada Lovelace (AD106)",
+    "architecture": arch,
     "gpu_unlock": "unlocked (v2.0)",
     "total_vram_gb": round(total_vram_gb, 2),
     "peak_vram_gb": round(peak_vram_gb, 2),
@@ -129,12 +142,12 @@ results = {
     "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
 }
 
-json_path = os.path.join(OUT_DIR, "benchmark_rtx4060ti_unlocked.json")
+json_path = os.path.join(OUT_DIR, f"benchmark_{gpu_slug}_unlocked.json")
 with open(json_path, "w") as f:
     json.dump(results, f, indent=2)
 
 # Also update latest
-with open(os.path.join(OUT_DIR, "benchmark_rtx4060ti.json"), "w") as f:
+with open(os.path.join(OUT_DIR, f"benchmark_{gpu_slug}.json"), "w") as f:
     json.dump(results, f, indent=2)
 
 print("\n" + "=" * 65)

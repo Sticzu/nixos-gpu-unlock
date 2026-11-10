@@ -60,14 +60,18 @@ To ensure strict scientific reproducibility and eliminate variances:
 ## 🚀 How to Run the Benchmark
 
 ```bash
-# Enter environment
+# Enter nix-shell with CUDA dependencies
 nix-shell /media/disk4/sticzu/projekty_ext/confyui/shell.nix
 
 # Benchmark RTX 4060 Ti (GPU 1):
 export CUDA_VISIBLE_DEVICES=1
-python benchmarks/run_pony_benchmark.py
+ComfyUI/.venv/bin/python benchmarks/run_pony_benchmark.py
 
 # Benchmark RTX 3060 (GPU 2):
 export CUDA_VISIBLE_DEVICES=2
-python benchmarks/run_pony_benchmark.py
+ComfyUI/.venv/bin/python benchmarks/run_pony_benchmark.py
+
+# Benchmark RTX 3090 (GPU 0):
+export CUDA_VISIBLE_DEVICES=0
+ComfyUI/.venv/bin/python benchmarks/run_pony_benchmark.py
 ```
