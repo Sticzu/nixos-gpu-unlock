@@ -110,6 +110,7 @@ except Exception:
 results = {
     "gpu_name": gpu_name,
     "architecture": "Ada Lovelace (AD106)",
+    "gpu_unlock": "unlocked (v2.0)",
     "total_vram_gb": round(total_vram_gb, 2),
     "peak_vram_gb": round(peak_vram_gb, 2),
     "model": "Pony Diffusion V6 XL",
@@ -128,8 +129,12 @@ results = {
     "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
 }
 
-json_path = os.path.join(OUT_DIR, "benchmark_rtx4060ti.json")
+json_path = os.path.join(OUT_DIR, "benchmark_rtx4060ti_unlocked.json")
 with open(json_path, "w") as f:
+    json.dump(results, f, indent=2)
+
+# Also update latest
+with open(os.path.join(OUT_DIR, "benchmark_rtx4060ti.json"), "w") as f:
     json.dump(results, f, indent=2)
 
 print("\n" + "=" * 65)

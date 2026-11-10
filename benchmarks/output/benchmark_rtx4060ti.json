@@ -1,6 +1,7 @@
 {
   "gpu_name": "NVIDIA GeForce RTX 4060 Ti",
   "architecture": "Ada Lovelace (AD106)",
+  "gpu_unlock": "unlocked (v2.0)",
   "total_vram_gb": 15.58,
   "peak_vram_gb": 10.38,
   "model": "Pony Diffusion V6 XL",
@@ -10,17 +11,17 @@
   "cfg": 7.0,
   "seed": 42,
   "run_times_seconds": [
-    10.966,
-    11.011,
-    11.033,
-    11.038,
-    11.05
+    8.028,
+    8.04,
+    8.06,
+    8.072,
+    8.086
   ],
-  "average_time_seconds": 11.02,
-  "average_it_s": 2.27,
-  "min_time_seconds": 10.966,
-  "max_time_seconds": 11.05,
-  "temperature_c": "65",
-  "power_draw_w": "112.41",
-  "timestamp": "2026-11-10 20:22:46"
+  "average_time_seconds": 8.057,
+  "average_it_s": 3.1,
+  "min_time_seconds": 8.028,
+  "max_time_seconds": 8.086,
+  "temperature_c": "64",
+  "power_draw_w": "124.73",
+  "timestamp": "2026-11-10 20:48:41"
 }
